@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Әліппе - Кім жылдам оқиды?</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Roboto:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Fredoka', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            min-height: 100vh;
+            user-select: none;
+        }
+
+        .font-bold-custom {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 900;
+        }
+
+        /* 3D Container & Card Styling */
+        .card-3d {
+            background: linear-gradient(145deg, #ffffff, #f0f4f8);
+            box-shadow: 0 10px 0 #3b82f6, 0 15px 20px rgba(0,0,0,0.15);
+            border: 4px solid #60a5fa;
+            transition: all 0.2s ease;
+        }
+
+        .card-3d-word {
+            background: linear-gradient(145deg, #ffffff, #fef3c7);
+            box-shadow: 0 8px 0 #f59e0b, 0 12px 15px rgba(0,0,0,0.1);
+            border: 3.5px solid #fbbf24;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .card-3d-word:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 11px 0 #d97706, 0 15px 20px rgba(0,0,0,0.15);
+        }
+
+        /* 3D Button Styles */
+        .btn-3d-green {
+            background: linear-gradient(180deg, #34d399 0%, #10b981 100%);
+            box-shadow: 0 6px 0 #047857, 0 10px 15px rgba(16, 185, 129, 0.4);
+            transition: all 0.1s ease;
+        }
+
+        .btn-3d-green:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #047857, 0 4px 6px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-3d-red {
+            background: linear-gradient(180deg, #f87171 0%, #ef4444 100%);
+            box-shadow: 0 6px 0 #b91c1c, 0 10px 15px rgba(239, 68, 68, 0.4);
+            transition: all 0.1s ease;
+        }
+
+        .btn-3d-red:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #b91c1c, 0 4px 6px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-3d-yellow {
+            background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);
+            box-shadow: 0 6px 0 #b45309, 0 10px 15px rgba(245, 158, 11, 0.4);
+            transition: all 0.1s ease;
+        }
+
+        .btn-3d-yellow:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #b45309, 0 4px 6px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-3d-purple {
+            background: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 100%);
+            box-shadow: 0 6px 0 #6d28d9, 0 10px 15px rgba(139, 92, 246, 0.4);
+            transition: all 0.1s ease;
+        }
+
+        .btn-3d-purple:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #6d28d9, 0 4px 6px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Animations */
+        @keyframes bounce-gentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-bounce-gentle {
+            animation: bounce-gentle 1.8s infinite ease-in-out;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-between p-3 sm:p-6 min-h-screen">
+
+    <!-- Top Header Container -->
+    <header class="w-full max-w-4xl text-center mb-4 relative z-10">
+        <div class="bg-white/90 backdrop-blur-md border-4 border-yellow-400 rounded-3xl p-4 shadow-xl flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <span class="bg-yellow-400 text-yellow-900 font-black px-4 py-1.5 rounded-2xl text-xl shadow-inner border-2 border-yellow-500">
+                    <i class="fa-solid fa-book-open mr-1"></i> Әліппе
+                </span>
+                <span class="bg-blue-500 text-white font-black px-4 py-1.5 rounded-2xl text-xl shadow-inner border-2 border-blue-600">
+                    1 Сынып
+                </span>
+            </div>
+            
+            <div class="text-center md:text-right">
+                <h1 class="text-3xl sm:text-4xl font-black text-indigo-700 tracking-wide drop-shadow">
+                    Кім жылдам оқиды?
+                </h1>
+                <!-- Subtitle requested: "Дауыстап оқы" smaller text under the main title -->
+                <p class="text-base sm:text-lg font-bold text-red-500 animate-pulse tracking-wider mt-0.5">
+                    <i class="fa-solid fa-volume-high"></i> Дауыстап оқы
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Interactive Area -->
+    <main class="w-full max-w-4xl flex-1 flex flex-col justify-center items-center my-2">
+
+        <!-- VIEW 1: START PREPARATION SCREEN -->
+        <section id="start-screen" class="w-full bg-white border-4 border-indigo-400 rounded-3xl p-6 sm:p-8 text-center card-3d">
+            <div class="max-w-md mx-auto">
+                <div class="mb-6 animate-bounce-gentle">
+                    <div class="inline-block p-4 bg-yellow-100 border-4 border-yellow-400 rounded-full shadow-lg">
+                        <i class="fa-solid fa-stopwatch text-6xl text-yellow-500"></i>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-black text-gray-800 mb-2">
+                    Оқу жарысына кош келдіңіз!
+                </h2>
+                <p class="text-gray-600 font-bold mb-6">
+                    Сөздерді дауыстап тез әрі қатесіз оқып шық!
+                </p>
+
+                <!-- Student Name Input -->
+                <div class="mb-6 text-left">
+                    <label for="student-name" class="block text-gray-700 font-black text-lg mb-2">
+                        <i class="fa-solid fa-user-graduate text-indigo-500 mr-2"></i> Оқушының атын жазыңыз:
+                    </label>
+                    <input type="text" id="student-name" placeholder="Мысалы: Алихан"
+                           class="w-full px-5 py-3.5 text-xl font-black rounded-2xl border-4 border-indigo-300 focus:border-indigo-500 focus:outline-none transition bg-indigo-50/50 text-indigo-900 shadow-inner">
+                    <p id="name-error" class="text-red-500 text-sm font-bold mt-1.5 hidden">
+                        <i class="fa-solid fa-circle-exclamation"></i> Өтініш, оқушының атын енгізіңіз!
+                    </p>
+                </div>
+
+                <!-- Start Action Button -->
+                <button onclick="startGame()" class="w-full py-4 rounded-2xl text-white font-black text-2xl btn-3d-green flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-play text-2xl"></i> Бастау
+                </button>
+            </div>
+        </section>
+
+        <!-- VIEW 2: ACTIVE READING GAMEPLAY SCREEN -->
+        <section id="game-screen" class="w-full bg-white border-4 border-blue-400 rounded-3xl p-4 sm:p-6 card-3d hidden">
+            <!-- Game Bar Header -->
+            <div class="flex flex-wrap justify-between items-center gap-3 mb-4 bg-indigo-50 p-3 sm:p-4 rounded-2xl border-2 border-indigo-200">
+                <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-gray-500 block font-bold">Оқушы:</span>
+                        <span id="current-player-name" class="text-xl font-black text-indigo-900">...</span>
+                    </div>
+                </div>
+
+                <!-- Timer Counter (ONLY Timer, Speed wording removed) -->
+                <div class="flex items-center bg-white px-5 py-2.5 rounded-2xl border-2 border-red-300 shadow-sm">
+                    <i class="fa-solid fa-clock text-red-500 text-2xl mr-2 animate-spin-slow"></i>
+                    <span id="timer-display" class="text-2xl sm:text-3xl font-black text-red-600 tracking-wider">00:00.0</span>
+                </div>
+            </div>
+
+            <!-- Instruction Subtitle Banner -->
+            <div class="text-center mb-4 bg-amber-50 p-2.5 rounded-xl border border-amber-300">
+                <p class="text-amber-900 font-black text-sm sm:text-base">
+                    <i class="fa-solid fa-volume-high text-red-500 animate-pulse mr-1"></i> Барлық сөздерді дауыстап оқып, «Аяқтау» батырмасын бас!
+                </p>
+            </div>
+
+            <!-- Words Grid (EXCLUSIVELY 12 MANDATED WORDS) -->
+            <div id="words-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 my-6">
+                <!-- Word blocks generated dynamically via Javascript -->
+            </div>
+
+            <!-- Finish Game Turn Button -->
+            <div class="text-center pt-2">
+                <button onclick="finishTurn()" class="w-full sm:w-auto px-12 py-4 rounded-2xl text-white font-black text-2xl btn-3d-red flex items-center justify-center gap-3 mx-auto">
+                    <i class="fa-solid fa-flag-checkered text-2xl"></i> Аяқтау
+                </button>
+            </div>
+        </section>
+
+        <!-- VIEW 3: TURN RESULT & AWARD MODAL SCREEN -->
+        <section id="result-screen" class="w-full bg-white border-4 border-yellow-400 rounded-3xl p-6 sm:p-8 text-center card-3d hidden">
+            <div class="max-w-lg mx-auto">
+                <div class="inline-block p-4 bg-yellow-100 rounded-full mb-3 border-2 border-yellow-300">
+                    <i class="fa-solid fa-trophy text-5xl text-yellow-500 animate-bounce"></i>
+                </div>
+                
+                <h2 id="result-title" class="text-3xl font-black text-indigo-900 mb-1">Жарайсың!</h2>
+                <p class="text-gray-600 font-bold mb-4">Тапсырма сәтті аяқталды!</p>
+
+                <!-- Performance Stats Box (No speed words, ONLY TIME) -->
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-5 rounded-2xl border-2 border-blue-200 mb-6 text-left space-y-3">
+                    <div class="flex justify-between items-center border-b pb-2">
+                        <span class="text-gray-700 font-black text-lg"><i class="fa-solid fa-stopwatch text-indigo-500 mr-2"></i> Жұмсалған уақыт:</span>
+                        <span id="res-time" class="text-3xl font-black text-indigo-700">00:00.0</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-700 font-black text-lg"><i class="fa-solid fa-star text-amber-500 mr-2"></i> Марапат:</span>
+                        <div id="res-stars" class="text-amber-400 text-2xl">
+                            <!-- Star icons populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Button Options -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <button onclick="nextStudent()" class="py-3.5 px-4 rounded-xl text-white font-black text-lg btn-3d-green flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-user-plus"></i> Келесі оқушы
+                    </button>
+                    <button onclick="showLeaderboardView()" class="py-3.5 px-4 rounded-xl text-white font-black text-lg btn-3d-yellow flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-list-ol"></i> Рейтингті көру
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 4: LEADERBOARD / RATING TABLE SCREEN -->
+        <section id="leaderboard-screen" class="w-full bg-white border-4 border-purple-400 rounded-3xl p-6 sm:p-8 card-3d hidden">
+            <div class="flex flex-wrap justify-between items-center mb-6 border-b pb-4">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-award text-4xl text-purple-600"></i>
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-black text-purple-900">Оқушылар Рейтингі</h2>
+                        <p class="text-xs sm:text-sm text-gray-500 font-bold">Кім бәрінен аз уақыт жұмсады?</p>
+                    </div>
+                </div>
+                <button onclick="nextStudent()" class="px-4 py-2 rounded-xl text-white font-black text-sm btn-3d-purple">
+                    <i class="fa-solid fa-plus mr-1"></i> Жаңа оқушы
+                </button>
+            </div>
+
+            <!-- Leaderboard List Table -->
+            <div class="max-h-80 overflow-y-auto mb-6 pr-1">
+                <div id="rating-list" class="space-y-3">
+                    <!-- Dynamic Rating Cards inserted here -->
+                </div>
+            </div>
+
+            <!-- Controls footer -->
+            <div class="flex flex-wrap gap-3 justify-between items-center pt-2 border-t">
+                <button onclick="resetAllData()" class="text-sm font-bold text-red-500 hover:text-red-700 underline">
+                    <i class="fa-solid fa-trash-can mr-1"></i> Рейтингті тазалау
+                </button>
+                <button onclick="nextStudent()" class="px-8 py-3 rounded-2xl text-white font-black text-xl btn-3d-green flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i> Қайта ойнау
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Canvas Confetti Overlay -->
+    <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+    <script>
+        /* EXCLUSIVELY 12 PERMITTED WORDS */
+        const ALLOWED_WORDS = [
+            "ОТ", "СУ", "ТОС", "ТУЫС", "СОТ", "ОТЫЗ", 
+            "УЫТ", "ТУ", "ТОТЫ", "ОТЫР", "СУСЫН", "ТҮС"
+        ];
+
+        /* Game State Variables */
+        let currentPlayerName = "";
+        let startTime = 0;
+        let elapsedTime = 0;
+        let timerInterval = null;
+        let leaderboard = [];
+
+        // Safely load saved ratings
+        try {
+            const saved = localStorage.getItem('alipme_reading_ratings_v2');
+            if (saved) leaderboard = JSON.parse(saved);
+        } catch (e) {
+            console.warn("LocalStorage unavailable", e);
+            leaderboard = [];
+        }
+
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                try {
+                    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContextClass) {
+                        audioCtx = new AudioContextClass();
+                    }
+                } catch (e) {
+                    console.warn("AudioContext initialization prevented:", e);
+                }
+            }
+        }
+
+        function playSound(type) {
+            try {
+                initAudio();
+                if (!audioCtx) return;
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                const now = audioCtx.currentTime;
+
+                if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(400, now);
+                    osc.frequency.exponentialRampToValueAtTime(800, now + 0.08);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                } else if (type === 'start') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(300, now);
+                    osc.frequency.setValueAtTime(450, now + 0.1);
+                    osc.frequency.setValueAtTime(600, now + 0.2);
+                    gain.gain.setValueAtTime(0.4, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+                    osc.start(now);
+                    osc.stop(now + 0.35);
+                } else if (type === 'fanfare') {
+                    const notes = [523.25, 659.25, 783.99, 1046.50];
+                    notes.forEach((freq, idx) => {
+                        const noteOsc = audioCtx.createOscillator();
+                        const noteGain = audioCtx.createGain();
+                        noteOsc.connect(noteGain);
+                        noteGain.connect(audioCtx.destination);
+
+                        noteOsc.type = 'triangle';
+                        noteOsc.frequency.setValueAtTime(freq, now + idx * 0.12);
+                        noteGain.gain.setValueAtTime(0.3, now + idx * 0.12);
+                        noteGain.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.12 + 0.25);
+
+                        noteOsc.start(now + idx * 0.12);
+                        noteOsc.stop(now + idx * 0.12 + 0.25);
+                    });
+                }
+            } catch (err) {
+                console.error("Audio error:", err);
+            }
+        }
+
+        /* Shuffle Helper */
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function showScreen(screenId) {
+            ['start-screen', 'game-screen', 'result-screen', 'leaderboard-screen'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('hidden');
+            });
+            const target = document.getElementById(screenId);
+            if (target) target.classList.remove('hidden');
+        }
+
+        function startGame() {
+            const nameInput = document.getElementById('student-name');
+            const errorMsg = document.getElementById('name-error');
+            const name = nameInput ? nameInput.value.trim() : '';
+
+            if (!name) {
+                if (errorMsg) errorMsg.classList.remove('hidden');
+                if (nameInput) nameInput.focus();
+                return;
+            }
+            if (errorMsg) errorMsg.classList.add('hidden');
+
+            playSound('start');
+            currentPlayerName = name;
+            const playerNameEl = document.getElementById('current-player-name');
+            if (playerNameEl) playerNameEl.innerText = currentPlayerName;
+
+            renderWordCards();
+
+            elapsedTime = 0;
+            updateTimerDisplay(0);
+            showScreen('game-screen');
+
+            // Live Timer
+            if (timerInterval) clearInterval(timerInterval);
+            startTime = Date.now();
+            timerInterval = setInterval(() => {
+                elapsedTime = Date.now() - startTime;
+                updateTimerDisplay(elapsedTime);
+            }, 50);
+        }
+
+        function renderWordCards() {
+            const container = document.getElementById('words-grid');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const shuffled = shuffleArray(ALLOWED_WORDS);
+
+            shuffled.forEach((word, index) => {
+                const card = document.createElement('div');
+                card.className = "card-3d-word rounded-2xl p-4 sm:p-5 flex flex-col items-center justify-center select-none";
+
+                card.innerHTML = `
+                    <span class="text-xs font-bold text-amber-600/70 mb-1">#${index + 1}</span>
+                    <span class="text-3xl sm:text-4xl font-bold-custom text-gray-800 tracking-wider drop-shadow-sm">
+                        ${word}
+                    </span>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function updateTimerDisplay(ms) {
+            const totalSec = Math.floor(ms / 1000);
+            const minutes = Math.floor(totalSec / 60);
+            const seconds = totalSec % 60;
+            const tenths = Math.floor((ms % 1000) / 100);
+
+            const minStr = String(minutes).padStart(2, '0');
+            const secStr = String(seconds).padStart(2, '0');
+
+            const display = document.getElementById('timer-display');
+            if (display) display.innerText = `${minStr}:${secStr}.${tenths}`;
+        }
+
+        function finishTurn() {
+            if (timerInterval) clearInterval(timerInterval);
+            playSound('fanfare');
+            triggerConfetti();
+
+            const finalSeconds = elapsedTime / 1000;
+
+            // Star Rating based purely on timer speed
+            let stars = 3;
+            if (finalSeconds > 25) stars = 1;
+            else if (finalSeconds > 15) stars = 2;
+
+            // Save Result
+            const record = {
+                name: currentPlayerName,
+                time: finalSeconds,
+                stars: stars
+            };
+
+            leaderboard.push(record);
+            // Sort leaderboard by shortest time (fastest)
+            leaderboard.sort((a, b) => a.time - b.time);
+
+            try {
+                localStorage.setItem('alipme_reading_ratings_v2', JSON.stringify(leaderboard));
+            } catch (e) {
+                console.warn("LocalStorage save error", e);
+            }
+
+            // Results UI
+            const resTitle = document.getElementById('result-title');
+            if (resTitle) resTitle.innerText = `Жарайсың, ${currentPlayerName}!`;
+
+            const resTime = document.getElementById('res-time');
+            if (resTime) resTime.innerText = `${finalSeconds.toFixed(1)} сек`;
+
+            const starsContainer = document.getElementById('res-stars');
+            if (starsContainer) {
+                starsContainer.innerHTML = '';
+                for (let i = 0; i < 3; i++) {
+                    const star = document.createElement('i');
+                    if (i < stars) {
+                        star.className = "fa-solid fa-star text-amber-400 mr-1 animate-bounce";
+                    } else {
+                        star.className = "fa-regular fa-star text-gray-300 mr-1";
+                    }
+                    starsContainer.appendChild(star);
+                }
+            }
+
+            showScreen('result-screen');
+        }
+
+        function nextStudent() {
+            playSound('click');
+            const input = document.getElementById('student-name');
+            if (input) input.value = '';
+            showScreen('start-screen');
+        }
+
+        function showLeaderboardView() {
+            playSound('click');
+            const listContainer = document.getElementById('rating-list');
+            if (!listContainer) return;
+            listContainer.innerHTML = '';
+
+            if (leaderboard.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="text-center py-8 text-gray-400 font-bold">
+                        Әлі ешкім оқыған жоқ. Алғашқы оқушы болыңыз!
+                    </div>
+                `;
+            } else {
+                leaderboard.forEach((item, index) => {
+                    let rankBadge = `<span class="w-8 h-8 rounded-full bg-gray-200 text-gray-700 font-black flex items-center justify-center">${index + 1}</span>`;
+                    
+                    if (index === 0) {
+                        rankBadge = `<span class="w-8 h-8 rounded-full bg-amber-400 text-white font-black flex items-center justify-center shadow"><i class="fa-solid fa-crown text-amber-100"></i></span>`;
+                    } else if (index === 1) {
+                        rankBadge = `<span class="w-8 h-8 rounded-full bg-gray-300 text-gray-800 font-black flex items-center justify-center shadow">2</span>`;
+                    } else if (index === 2) {
+                        rankBadge = `<span class="w-8 h-8 rounded-full bg-amber-600 text-white font-black flex items-center justify-center shadow">3</span>`;
+                    }
+
+                    const card = document.createElement('div');
+                    card.className = `flex items-center justify-between p-3.5 rounded-2xl border-2 ${index === 0 ? 'bg-amber-50 border-amber-300' : 'bg-gray-50 border-gray-200'}`;
+                    
+                    card.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            ${rankBadge}
+                            <div>
+                                <h4 class="font-extrabold text-gray-800 text-lg line-clamp-1">${item.name}</h4>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xl font-black text-indigo-700 block">${item.time.toFixed(1)} сек</span>
+                            <span class="text-xs text-amber-500">
+                                ${'<i class="fa-solid fa-star"></i>'.repeat(item.stars)}
+                            </span>
+                        </div>
+                    `;
+                    listContainer.appendChild(card);
+                });
+            }
+
+            showScreen('leaderboard-screen');
+        }
+
+        function resetAllData() {
+            playSound('click');
+            if (confirm("Барлық рейтинг деректерін жойғыңыз келе ме?")) {
+                leaderboard = [];
+                try {
+                    localStorage.removeItem('alipme_reading_ratings_v2');
+                } catch (e) {
+                    console.warn("LocalStorage remove error", e);
+                }
+                showLeaderboardView();
+            }
+        }
+
+        function triggerConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const pieces = [];
+            const colors = ['#f43f5e', '#10b981', '#3b82f6', '#f59e0b', '#8b5cf6'];
+
+            for (let i = 0; i < 70; i++) {
+                pieces.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 10 + 5,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speed: Math.random() * 4 + 2,
+                    angle: Math.random() * 360
+                });
+            }
+
+            function render() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                pieces.forEach(p => {
+                    p.y += p.speed;
+                    p.angle += 3;
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate((p.angle * Math.PI) / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                    ctx.restore();
+                });
+
+                if (pieces.some(p => p.y < canvas.height)) {
+                    requestAnimationFrame(render);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+            render();
+        }
+
+        window.startGame = startGame;
+        window.finishTurn = finishTurn;
+        window.nextStudent = nextStudent;
+        window.showLeaderboardView = showLeaderboardView;
+        window.resetAllData = resetAllData;
+
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('confetti-canvas');
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        });
+    </script>
+</body>
+</html>
